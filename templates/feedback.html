@@ -4,17 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <title>Feedback</title>
 </head>
 
 <body>
+    <form method="POST" id="feadback-form">
 
-    {% if 'user_id' in session %}
-    <li><a href="/logout">Logout</a></li>
-    <li><a href="/secret">Secret</a></li>
-    {% endif %}
-
-    <form id="user-login-form" method="POST">
         {{ form.hidden_tag() }} <!--add type=hidden form fields -->
 
         {% for field in form
@@ -32,6 +27,7 @@
         {% endfor %}
 
         <button type="submit">Submit</button>
+
     </form>
 
 </body>
