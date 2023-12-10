@@ -107,7 +107,7 @@ def logout():
 
 
 @app.route("/user/<username>/feedback/add", methods=["GET", "POST"])
-def user_feedback(username):
+def give_user_feedback(username):
     form = userFeedbackForm()
     if request.method == 'GET':
 
@@ -128,7 +128,7 @@ def user_feedback(username):
                 content = form.content.data
 
                 new_feedback = Feedback(
-                    title=title, content=content)
+                    title=title, content=content, username=username)
 
                 db.session.add(new_feedback)
                 try:
@@ -137,4 +137,18 @@ def user_feedback(username):
                     form.feedback.errors.append(
                         'Fill out both boxes. Please try again')
 
-        return redirect('/user/<username>/feedback')
+        return redirect(f'/user/{username}/feedback')
+
+
+@app.route("/user/<username>/feedback", methods=["GET"])
+def show_user_feedback(username):
+    user = User.query.filter_by(username=username).first_or_404()
+    feedback = Feedback.query.all()
+    if request.method == 'GET':
+
+        if "user_id" not in session:
+            flash("You must be logged in to view!")
+            return redirect("/")
+
+        else:
+            return render_template("user.html", feedback=feedback, user=user)

@@ -2,6 +2,7 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField
 from wtforms.validators import InputRequired, Length, NumberRange, URL, Optional
 
+
 class addUserForm(FlaskForm):
     username = StringField(
         "Username",
@@ -23,7 +24,7 @@ class addUserForm(FlaskForm):
         "Last Name",
         validators=[InputRequired()],
     )
-    
+
 
 class loginUserForm(FlaskForm):
     username = StringField(
@@ -34,6 +35,7 @@ class loginUserForm(FlaskForm):
         "Password",
         validators=[InputRequired()],
     )
+
 
 class userFeedbackForm(FlaskForm):
     title = StringField(

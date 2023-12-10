@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Feedback</title>
+</head>
+
+<body>
+
+    {% for feed in feedback
+    if feed.username == user.username %}
+
+    <p>{{feed.title}}</p>
+    <p>{{feed.content}}</p>
+    <br>
+
+    {% endfor %}
+
+</body>
+
+</html>
